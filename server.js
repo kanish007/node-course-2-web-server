@@ -26,9 +26,9 @@ fs.appendFile('server.log', log + '\n', (err)=>{
 })
 next();
 })
-app.use((req,res,next)=>{
-  res.render('maintenance.hbs')
-})
+// app.use((req,res,next)=>{
+//   res.render('maintenance.hbs')
+// })
 app.use(express.static(__dirname + '/public'))
 app.get('/details',(req,res)=>{
   // res.send('<h1>Hello Express</h1>');
@@ -57,7 +57,11 @@ app.get('/',(req,res)=>{
     // currentYear : new Date().getFullYear()
   });
 })
-
+app.get('/projects',(req,res)=>{
+  res.render('projects.hbs',{
+    pageTitle : 'Project Page'
+  });
+})
 app.get('/bad', (req,res)=>{
   res.send({
     errorMessage : 'Unable to handle request'
